@@ -6,7 +6,7 @@ import createCurrentHook from './createCurrentHook';
 import createDoingHook from './createDoingHook';
 import createDidHook from './createDidHook';
 
-function createHooks( options ) {
+function createHooks( options = {} ) {
 	const actions = {};
 	const filters = {};
 
