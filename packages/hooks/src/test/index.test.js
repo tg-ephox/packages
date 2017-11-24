@@ -598,3 +598,23 @@ test( 'Test `this` context via composition', () => {
 
 } );
 
+// Test custom namespace validation
+
+test('Accepts namespace with custom namespace regex option', () => {
+
+	const hooks = createHooks( { validateNamespaceRegex: /^[a-z][a-z0-9-]*\/[a-z][a-z0-9-]*$/  } );
+
+	hooks.addFilter('a-hook', 'my-plugin/my-custom-block', () => { });
+
+	expect( console.error ).toHaveBeenCalledTimes( 0 );
+	expect( hooks.filters['a-hook'].handlers.length ).toEqual( 1 );
+} );
+
+test('Rejects namespace with custom namespace regex option', () => {
+
+	const hooks = createHooks( { validateNamespaceRegex: /^[a-z][a-z0-9-]*\/[a-z][a-z0-9-]*$/  } );
+
+	hooks.addFilter('a-hook', 'my-plugin', () => { });
+
+	expect( console.error ).toHaveBeenCalledTimes( 1 );
+} );

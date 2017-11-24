@@ -6,13 +6,13 @@ import createCurrentHook from './createCurrentHook';
 import createDoingHook from './createDoingHook';
 import createDidHook from './createDidHook';
 
-function createHooks() {
+function createHooks( options ) {
 	const actions = {};
 	const filters = {};
 
 	return {
-		addAction:        createAddHook( actions ),
-		addFilter:        createAddHook( filters ),
+		addAction:        createAddHook( actions, options ),
+		addFilter:        createAddHook( filters, options ),
 		removeAction:     createRemoveHook( actions ),
 		removeFilter:     createRemoveHook( filters ),
 		hasAction:        createHasHook( actions ),

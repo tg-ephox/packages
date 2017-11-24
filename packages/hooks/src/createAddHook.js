@@ -8,7 +8,7 @@ import validateHookName from './validateHookName.js';
  *
  * @return {Function}       Function that adds a new hook.
  */
-function createAddHook( hooks ) {
+function createAddHook( hooks, options ) {
 	/**
 	 * Adds the hook to the appropriate hooks container.
 	 *
@@ -23,7 +23,7 @@ function createAddHook( hooks ) {
 			return;
 		}
 
-		if ( ! validateNamespace( namespace ) ) {
+		if ( ! validateNamespace( namespace, options.validateNamespaceRegex ) ) {
 			return;
 		}
 
